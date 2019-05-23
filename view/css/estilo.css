@@ -1,0 +1,71 @@
+/*REGRAS GERAIS DAS PÁGINAS*/
+
+.conteudo {
+    padding: 15px;
+    min-height: 600px;
+}
+
+#logo {
+    min-height: 150px;
+}
+
+header > ul {
+    padding: 15px 0;
+    background-color: black;
+}
+
+a.nav-link, div.dropdown-menu {
+    margin-left: 135px;
+}
+
+.navbar {
+    background-color: #006400 !important;    
+}
+
+.navbar a {
+    color: white !important;
+}
+
+.btn {
+    background-color: #006400 !important;
+    border-color: #006400 !important;
+}
+
+.dropdown-menu > a {
+    color: black !important;
+}
+
+.tituloTable {
+    text-align: center; 
+    margin: 0 10px 10px 10px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: default;
+}
+
+/* REGRA DA TELA DE GERENCIAMENTO DE TIME */
+
+#nomeDoTime {
+    text-align: center; 
+    margin: 0 10px 10px 10px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: default;
+}
+
+/* REGRA DA TELA DE CRUD DE JOGADORES */
+
+#cabecalhoLista {
+    text-align: center; 
+    font-weight: bold;
+    font-size: 18px;
+}
+
+span#id {
+    display: none;
+}
+
+/* REGRA DA TELA DE SITUAÇÃO MÉDICA */
+.campo-afast {
+    visibility: hidden;
+}
