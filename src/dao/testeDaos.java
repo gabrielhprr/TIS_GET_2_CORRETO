@@ -15,7 +15,7 @@ import dao.PartidaDAO;
 
 public class testeDaos {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
 		
 		//TESTE DE ESTATISTICA
 //		Estatistica estatistica = new Estatistica();
@@ -97,9 +97,38 @@ public class testeDaos {
 		EscalacaoDAO daoEscalacao = new EscalacaoDAO();
 		Escalacao escalacao = new Escalacao();
 		JogadorDAO daoJogador = new JogadorDAO();
+		CampeonatoDAO campeonatoDAO = new CampeonatoDAO();
 		
-		escalacao.incluirJogador(daoJogador.get(1));
-		daoEscalacao.add(escalacao);
+//		escalacao.incluirJogador(daoJogador.get(19));
+//		escalacao.incluirJogador(daoJogador.get(27));
+//		escalacao.incluirJogador(daoJogador.get(28));
+//
+//		escalacao.setCampeonato(campeonatoDAO.get(1));
+//		
+//		daoEscalacao.add(escalacao);
+		
+		
+		   try {
+//			for(Escalacao esc : daoEscalacao.getAll()) {
+//				   System.out.println(esc.toJson().toString());
+//			   }
+//			   System.out.println(daoEscalacao.get(0).toJson().toString());
+			
+			
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

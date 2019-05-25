@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.json.JSONObject;
 
-import exceptions.LimiteJogosExcedido;
-
 public class Campeonato implements JsonFormatter {
 	private String nome;
 	private int jogos;
@@ -72,12 +70,12 @@ public class Campeonato implements JsonFormatter {
 		return partidas.get(jogos);
 	}
 
-	public void inserirPartida(Partida partida) throws LimiteJogosExcedido {
-		if (cont < jogos) {
-			this.partidas.add(partida);
-			this.cont++;
-		}else {
-			throw new LimiteJogosExcedido(jogos);
-		}
-	}
+//	public void inserirPartida(Partida partida) throws LimiteJogosExcedido {
+//		if (cont < jogos) {
+//			this.partidas.add(partida);
+//			this.cont++;
+//		}else {
+//			throw new LimiteJogosExcedido(jogos);
+//		}
+//	}
 }
