@@ -71,8 +71,8 @@ public class Escalacao implements JsonFormatter {
 		JSONObject obj = new JSONObject();
 		obj.put("id", this.id);
 		obj.put("listaJogadores",toJsonArray());
-		obj.put("estaSuspenso", this.finalizado);
-		obj.put("campeonato",this.campeonato);
+		obj.put("finalizado", this.finalizado);
+		obj.put("campeonato", this.campeonato.toJson());
 
 		return obj;
 	}
@@ -90,4 +90,6 @@ public class Escalacao implements JsonFormatter {
 	public boolean equals(Object obj) {
 		return this.id == ((Escalacao) obj).id;
 	}
+
+
 }

@@ -16,6 +16,10 @@ public class Campeonato implements JsonFormatter {
 
 	}
 
+	public Campeonato(Integer id) {
+		this.id=id;
+	}
+	
 	public Campeonato(String nome, int jogos) {
 		this.nome = nome;
 		this.jogos = jogos;

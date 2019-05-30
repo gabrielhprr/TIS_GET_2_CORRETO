@@ -34,25 +34,21 @@ public class EscalacaoDAO {
 				j.setId(Integer.parseInt(dados[0]));
 				j.setFinalizado(Boolean.parseBoolean(dados[1]));
 				
-//				if (dados.length > 1 && !dados[1].equals("")) {
-//					String[] idJogadores = dados[1].split("-");
-//					for (String s : idJogadores) {
-//						Integer iD = Integer.parseInt(s);
-//						Jogador jogador = jogadorDAO.get(iD);
-//
-//						j.incluirJogador(jogador);
-//					}
-//				}
-				//j.setCampeonato(campeonato(dados[2]));
-				
-//				id
-//				finalizado
-//				listaJogador
-//				campeonato
-				
-				
-				
-				retorno = j;
+				if (dados.length > 2 && !dados[2].equals("")) {
+					String[] idJogadores = dados[2].split("-");
+					for (String s : idJogadores) {
+						Integer iD = Integer.parseInt(s);
+						Jogador jogador = jogadorDAO.get(iD);
+
+						j.incluirJogador(jogador);
+					}
+				}
+				j.setCampeonato(campeonatoDAO.get(Integer.parseInt(dados[3]))); 
+
+				if (id.equals(j.getId())) {
+					retorno = j;
+					break;
+				}
 
 			}
 			}} catch (Exception e) {
@@ -63,46 +59,6 @@ public class EscalacaoDAO {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//			while ((linha = buffer_entrada.readLine()) != null) {
-//				String[] dados = linha.split(";");
-//
-//				j = new Escalacao();
-//				j.setId(Integer.parseInt(dados[0]));
-//				j.setFinalizado(Boolean.parseBoolean(dados[1]));
-//
-//				if (dados.length > 1 && !dados[1].equals("")) {
-//					String[] idJogadores = dados[2].split("-");
-//					for (String s : idJogadores) {
-//						Integer idJogador = Integer.parseInt(s);
-//						Jogador jogador = jogadorDAO.get(idJogador);
-//
-//						j.getListaJogador().add(jogador);
-//					}
-//				}
-//				if (id.equals(j.getId())) {
-//					retorno = j;
-//					break;
-//				}
-//			}
-//
-//			return null;
-//		} catch (Exception e) {
-//			System.out.println("ERRO ao ler a Estacalacao '" + j.getId() + "' do disco rígido!");
-//			e.printStackTrace();
-//		}
-//		return retorno;
-//}
-
 	@SuppressWarnings("resource")
 	public void add(Escalacao t) {
 
@@ -141,7 +97,7 @@ public class EscalacaoDAO {
 				
 			}
 			bufferOutEscalacao.write(separadorDeAtributo);
-			bufferOutEscalacao.write(t.getCampeonato().getId() + separadorDeAtributo);
+			bufferOutEscalacao.write(t.getCampeonato().getId());
 
 			
 			
@@ -157,13 +113,21 @@ public class EscalacaoDAO {
 	}
 
 	public void update(Escalacao t) throws NumberFormatException, IOException {
-		saveToFile(t);
-
+		List<Escalacao> escalacoes = getAll();
+		int index = escalacoes.indexOf(t);
+		if (index != -1) {
+			escalacoes.set(index, t);
+			saveToFile(escalacoes);
+		}
 	}
 
 	public void delete(Escalacao t) throws NumberFormatException, IOException {
-		List<Escalacao> escalacao = getAll();
-			saveToFile(t);
+		List<Escalacao> escalacoes = getAll();
+		int index = escalacoes.indexOf(t);
+		if (index != -1) {
+			escalacoes.remove(index);
+			saveToFile(escalacoes);
+		}
 		}
 
 	
@@ -182,43 +146,48 @@ public class EscalacaoDAO {
 			j.setId(Integer.parseInt(dados[0]));
 			j.setFinalizado(Boolean.parseBoolean(dados[1]));
 
-			if (dados.length > 1 && !dados[1].equals("")) {
+			if (dados.length > 2 && !dados[2].equals("")) {
 				String[] idJogadores = dados[2].split("-");
 				for (String s : idJogadores) {
-					Integer idJogador = Integer.parseInt(s);
-					Jogador jogador = jogadorDAO.get(idJogador);
+					Integer iD = Integer.parseInt(s);
+					Jogador jogador = jogadorDAO.get(iD);
 
-					j.getListaJogador().add(jogador);
+					j.incluirJogador(jogador);
 				}
-
 			}
-
-			buffer_entrada.close();
+			j.setCampeonato(campeonatoDAO.get(Integer.parseInt(dados[3]))); 
+			escalacao.add(j);
 		}
+		buffer_entrada.close();
 		return escalacao;
 
 	}
 
-	public void saveToFile(Escalacao t) throws IOException {
+	public void saveToFile(List<Escalacao> e) throws IOException {
 
 		try (BufferedWriter buffer_saida = new BufferedWriter(new FileWriter(ARQUIVO, false))) {
 			String separador = ";";
-			buffer_saida.write(t.getId() + separador);
-
-			for (int i = 0; i < t.getListaJogador().size(); i++) {
-				Jogador jogador = t.getListaJogador().get(i);
-				if (i != t.getListaJogador().size() - 1) {
-					buffer_saida.write(jogador.getId() + "-");
-				} else {
-					buffer_saida.write(jogador.getId() + "");
+			for(Escalacao escalacao : e  ) {
+				buffer_saida.write(escalacao.getId() + separador);
+				buffer_saida.write(escalacao.isFinalizado() + separador);
+				for (int i = 0; i < escalacao.getListaJogador().size(); i++) {
+					Jogador jogador = escalacao.getListaJogador().get(i);
+					if (i != escalacao.getListaJogador().size() - 1) {
+						buffer_saida.write(jogador.getId() + "-");
+					} else {
+						buffer_saida.write(jogador.getId() + "");
+					}
+					
 				}
-
+				buffer_saida.write(separador);
+				buffer_saida.write(escalacao.getCampeonato().getId() + separador);
+				
+				buffer_saida.write(System.getProperty("line.separator"));
+				buffer_saida.flush();
 			}
-			buffer_saida.write(System.getProperty("line.separator"));
-			buffer_saida.flush();
-		} catch (Exception e) {
+		} catch (Exception f) {
 			System.out.println("Erro ao gravar a Escalação.");
-			e.printStackTrace();
+			f.printStackTrace();
 
 		}
 	}

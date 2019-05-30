@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Campeonato;
 import model.Escalacao;
 import model.Estatistica;
 import model.Jogador;
@@ -99,26 +100,40 @@ public class testeDaos {
 		JogadorDAO daoJogador = new JogadorDAO();
 		CampeonatoDAO campeonatoDAO = new CampeonatoDAO();
 		
-//		escalacao.incluirJogador(daoJogador.get(19));
+//		escalacao.setId(56);
+		
 //		escalacao.incluirJogador(daoJogador.get(27));
 //		escalacao.incluirJogador(daoJogador.get(28));
+//		escalacao.incluirJogador(daoJogador.get(29));
 //
-//		escalacao.setCampeonato(campeonatoDAO.get(1));
+//		escalacao.setCampeonato(campeonatoDAO.get(3));
 //		
 //		daoEscalacao.add(escalacao);
 		
 		
-		   try {
+//		   try {
 //			for(Escalacao esc : daoEscalacao.getAll()) {
 //				   System.out.println(esc.toJson().toString());
 //			   }
-//			   System.out.println(daoEscalacao.get(0).toJson().toString());
+//			   escalacao = daoEscalacao.get(52);
+//			   escalacao.setCampeonato(new Campeonato(2));
+			   
+//			   System.out.println(escalacao.toJson().toString()); //Problema no get, quando tenta setar, não vem o correto.
+//			   daoEscalacao.delete(escalacao);
+			   
+			   
+			   
+			   
+//				daoEscalacao.add(escalacao);
+	
+//			   	escalacao.setFinalizado(true);
+//								   
+//			   daoEscalacao.update(escalacao);
+			   
 			
-			
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		} catch (NumberFormatException | IOException e) {
+//			e.printStackTrace();
+//		}
 		
 		
 		
