@@ -43,8 +43,8 @@ public class PartidaService {
 
 		try {
 			Partida partida = new Partida();
-			partida.setId(query.get("id"));
-			partida.setEstatisticasJogador(query.get("Partida"));
+			partida.setId(query.getInteger("id"));
+			partida.setEstatisticasJogador(query.getlist("Partida"));
 			partidaDAO.add(partida);
 
 			return listaPartidaJSON().toString();

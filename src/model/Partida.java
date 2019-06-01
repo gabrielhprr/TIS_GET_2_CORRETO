@@ -6,8 +6,11 @@ import org.json.JSONArray;
 
 import org.json.JSONObject;
 
+import exceptions.LimiteEstatisticaJogador;
+
 public class Partida implements JsonFormatter {
 	private Integer id;
+	static final int LIMITE_ESTATISTICA_JOGADOR = 18;
 
 	private List<Estatistica> estatisticasJogador;
 
@@ -31,10 +34,12 @@ public class Partida implements JsonFormatter {
 		this.estatisticasJogador = estatisticasJogador;
 	}
 
-	public void inserirEstatistica(Estatistica estatistica) {
+	public void inserirEstatistica(Estatistica estatistica) throws LimiteEstatisticaJogador {
 
 		if (estatisticasJogador.size() < 18 && estatistica != null) {
 			estatisticasJogador.add(estatistica);
+		}else {
+			throw new LimiteEstatisticaJogador();
 		}
 
 	}

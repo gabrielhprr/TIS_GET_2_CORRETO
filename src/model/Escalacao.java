@@ -6,24 +6,29 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import exceptions.EscalacaoTitularCompleta;
+
 public class Escalacao implements JsonFormatter {
 
 	private Integer id;
 	private boolean finalizado;
 	private List<Jogador> listaJogador;
 	private Campeonato campeonato;
+	
+	static final int LIMITE_ESCALACAO_TITULAR = 11;
+
 
 	public Escalacao() {
 		this.setFinalizado(false);
 		this.listaJogador = new ArrayList<Jogador>();
 	}
 
-	public void incluirJogador(Jogador jogador) {
+	public void incluirJogador(Jogador jogador) throws EscalacaoTitularCompleta{
 		if (listaJogador.size() < 11) {
 			this.listaJogador.add(jogador);
 
 		} else {
-			System.out.println("Escalação Completa");
+			throw new EscalacaoTitularCompleta();
 		}
 	}
 

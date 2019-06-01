@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import exceptions.EscalacaoTitularCompleta;
 import model.Campeonato;
 import model.Escalacao;
 import model.Jogador;
@@ -112,7 +113,7 @@ public class EscalacaoDAO {
 		}
 	}
 
-	public void update(Escalacao t) throws NumberFormatException, IOException {
+	public void update(Escalacao t) throws NumberFormatException, IOException, EscalacaoTitularCompleta {
 		List<Escalacao> escalacoes = getAll();
 		int index = escalacoes.indexOf(t);
 		if (index != -1) {
@@ -121,7 +122,7 @@ public class EscalacaoDAO {
 		}
 	}
 
-	public void delete(Escalacao t) throws NumberFormatException, IOException {
+	public void delete(Escalacao t) throws NumberFormatException, IOException, EscalacaoTitularCompleta {
 		List<Escalacao> escalacoes = getAll();
 		int index = escalacoes.indexOf(t);
 		if (index != -1) {
@@ -132,7 +133,7 @@ public class EscalacaoDAO {
 
 	
 
-	public List<Escalacao> getAll() throws FileNotFoundException, NumberFormatException, IOException {
+	public List<Escalacao> getAll() throws FileNotFoundException, NumberFormatException, IOException, EscalacaoTitularCompleta {
 
 		List<Escalacao> escalacao = new ArrayList<Escalacao>();
 		Escalacao j = null;
